@@ -80,7 +80,7 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/bigu", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	
 	public String test(Locale locale, Model model) {
 		
