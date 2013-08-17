@@ -1,14 +1,17 @@
 package com.meenu.app;
 
 import java.text.DateFormat;
-
 import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -105,5 +108,39 @@ public class HomeController {
 			
 			return "bigu";
 }
+	
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	
+	public String user(Locale locale, Model model) {
+		
+	  logger.info("user page");
+	  
+	  return "user";
+	  
+	}
+
+	
+	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
+	
+	public String saveUser(HttpServletRequest request, Locale locale, Model model) {
+		
+	  String username = "";
+	  
+	  try {
+		  
+	    username = ServletRequestUtils.getStringParameter(request, "username");
+	    
+	  } catch (ServletRequestBindingException e) {
+		  
+	    e.printStackTrace();
+	  }
+	  
+	  logger.info("save user page {}", username);
+	  
+	  model.addAttribute("name", username );
+	  
+	  return "saveuser";
+	}
+
 	
 }
