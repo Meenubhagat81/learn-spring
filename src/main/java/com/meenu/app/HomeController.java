@@ -1,6 +1,7 @@
 package com.meenu.app;
 
 import java.text.DateFormat;
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -54,8 +55,55 @@ public class HomeController {
 		
 		model.addAttribute("fullName", "Sumit Arora" ); 
 		
-				return null;
+				return "hello";
 }
 
+	@RequestMapping(value = "/bigu", method = RequestMethod.GET)
+	
+		public String bigu(Locale locale, Model model) {
+		
+		logger.info("Welcome home!.", locale);
+		
+		Date date = new Date();
+		
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		model.addAttribute("fullName", "Meenu Bhagat" ); 
+		
+		
+		
+		return "bigu";
+	}
+	
+	
+	@RequestMapping(value = "/bigu", method = RequestMethod.GET)
+	
+	public String test(Locale locale, Model model) {
+		
+			logger.info("Simple Date Format",locale);
+			
+			Date now = new Date();
+	
+			//DateFormat printFormatter = new SimpleDateFormat("MM/dd/yyyy");
+			
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, locale);
+			
+			//DateFormat anotherFormatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault());
+			
+			
+			
+			String formattedDate = dateFormat.format(now);
+			
+			
+			model.addAttribute("serverTime", formattedDate);
+			
+			model.addAttribute("fullName", "Meenu Bhagat");
+			
+			return "bigu";
+}
 	
 }
