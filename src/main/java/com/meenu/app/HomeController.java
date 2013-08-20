@@ -42,6 +42,8 @@ public class HomeController {
 		return "home";
 	}
 	
+
+	
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	
 	public String hello(Locale locale, Model model) {
@@ -81,6 +83,7 @@ public class HomeController {
 		
 		return "bigu";
 	}
+	
 	
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -128,11 +131,12 @@ public class HomeController {
 	  
 	  try {
 		  
-	    username = ServletRequestUtils.getStringParameter(request, "username");
+	    username = ServletRequestUtils.getStringParameter(request, "username2");
 	    
 	  } catch (ServletRequestBindingException e) {
 		  
-	    e.printStackTrace();
+	    
+		  logger.info(e.getStackTrace().toString());
 	  }
 	  
 	  logger.info("save user page {}", username);
@@ -141,6 +145,80 @@ public class HomeController {
 	  
 	  return "saveuser";
 	}
-
 	
-}
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+	
+	public String contact(Locale locale, Model model) {
+		
+	  logger.info("user page");
+	  
+	  return "contact";
+	  
+	}
+    
+@RequestMapping(value = "/savecontact", method = RequestMethod.POST)
+	
+	public String savecontact(HttpServletRequest request, Locale locale, Model model) {
+		
+	  String firstname = "";
+	  String lastname = "";
+	  String email = "";
+	  String rd_1 = "";
+	  String message = "";
+	 
+	  
+	  try {
+		  
+	    firstname = ServletRequestUtils.getStringParameter(request, "firstname");
+	    lastname = ServletRequestUtils.getStringParameter(request, "lastname");
+	    email = ServletRequestUtils.getStringParameter(request, "email");
+	    rd_1 = ServletRequestUtils.getStringParameter(request, "rd_1");
+	    //rd_2 = ServletRequestUtils.getStringParameter(request, "rd_2");
+	    //rd_3 = ServletRequestUtils.getStringParameter(request, "rd_3");
+	    //rd_4 = ServletRequestUtils.getStringParameter(request, "rd_4");
+	    message = ServletRequestUtils.getStringParameter(request, "message");
+	    
+	  } catch (ServletRequestBindingException e) {
+		  
+	    
+		  logger.info(e.getStackTrace().toString());
+	  }
+	  
+	  logger.info("save user page {}", firstname);
+	  
+	  model.addAttribute("name", firstname );
+	  
+      logger.info("save user page {}", lastname);
+	  
+	  model.addAttribute("name", lastname );
+	  
+	  logger.info("save user page {}", email);
+	  
+	  model.addAttribute("name", email );
+	  
+	  logger.info("save user page {}", rd_1);
+	  
+	  model.addAttribute("name", rd_1 );
+	  
+	  logger.info("save user page {}", rd_1);
+	  
+	  model.addAttribute("name", rd_1 );
+	  
+	  logger.info("save user page {}", rd_1);
+	  
+	  model.addAttribute("name", rd_1 );
+	  
+	  logger.info("save user page {}", rd_1);
+	  
+	  model.addAttribute("name", rd_1 );
+	  
+	  logger.info("save user page {}", message);
+	  
+	  model.addAttribute("name", message );
+	  
+	  return "savecontact";
+	}
+
+	}
+
+
